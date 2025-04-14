@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Threat Hunting Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Threat Hunting Dashboard for UPTM SOC</h1>
+
+        <!-- ✅ Log Graph (Moved Above the Log Form) -->
+        <h2>Threat Detection Graph</h2>
+        <img id="logGraph" src="{{ url_for('static', filename='graph.png') }}" alt="Log Graph" class="graph-img">
+
+        <!-- ✅ Log Form -->
+        <h2>Add New Log</h2>
+        <form id="log-form">
+            <input type="text" id="log-message" placeholder="Log Message" required>
+            <input type="number" id="log-value" placeholder="Log Value" required>
+            <button type="submit">Add Log</button>
+        </form>
+
+        <!-- ✅ Search Bar -->
+        <h2>Search Logs</h2>
+        <input type="text" id="search-input" placeholder="Search logs..." onkeyup="searchLogs()">
+
+        <!-- ✅ Log Table -->
+        <h2>Recent Logs</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Timestamp</th>
+                    <th>Message</th>
+                    <th>Value</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+		    <th>Severity</th>
+                </tr>
+            </thead>
+            <tbody id="logsContainer"></tbody>
+        </table>
+    </div>
+
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
+</body>
+</html>
